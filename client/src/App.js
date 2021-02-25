@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
+// components
+import TodoItem from './components/TodoItem';
+import AddTodo from './components/AddTodo';
+
 import { getTodos, addTodo, updateToDo, deleteToDo } from './API';
 
 function App() {
@@ -58,7 +62,22 @@ function App() {
             .catch((error) => console.log(error));
     };
 
-    return <div>hello from App js</div>;
+    return (
+        <>
+            <div>
+                hello from App js
+                <AddTodo saveTodo={handleSaveTodo} />
+                {todos.map((todo) => (
+                    <TodoItem
+                        key={todo._id}
+                        todo={todo}
+                        updateTodo={handleUpdateTodo}
+                        deleteTodo={handleDeleteTodo}
+                    />
+                ))}
+            </div>
+        </>
+    );
 }
 
 export default App;
