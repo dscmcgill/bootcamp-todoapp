@@ -8,7 +8,18 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 
+// Styles
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    background: {
+        backgroundColor: '#444444',
+    },
+    addButton: theme.addButton,
+}));
+
 export default function AddTodo({ saveTodo }) {
+    const classes = useStyles();
     const [formData, setFormData] = useState({ name: '', description: '' });
 
     const handleForm = (e) => {
@@ -32,9 +43,10 @@ export default function AddTodo({ saveTodo }) {
                 direction='row'
                 justify='center'
                 alignItems='center'
+                style={{ margin: '20px 0px' }}
             >
                 <Grid item xs={12} sm={4}>
-                    <Card>
+                    <Card className={classes.background}>
                         <Grid
                             container
                             direction='row'
@@ -71,6 +83,16 @@ export default function AddTodo({ saveTodo }) {
                                                         width: '100%',
                                                     }}
                                                     onChange={handleForm}
+                                                    InputLabelProps={{
+                                                        style: {
+                                                            color: '#ffffff',
+                                                        },
+                                                    }}
+                                                    InputProps={{
+                                                        style: {
+                                                            color: 'white',
+                                                        },
+                                                    }}
                                                 />
                                             </Grid>
                                             <Grid item sm={6}>
@@ -86,6 +108,16 @@ export default function AddTodo({ saveTodo }) {
                                                         width: '100%',
                                                     }}
                                                     onChange={handleForm}
+                                                    InputLabelProps={{
+                                                        style: {
+                                                            color: '#ffffff',
+                                                        },
+                                                    }}
+                                                    InputProps={{
+                                                        style: {
+                                                            color: 'white',
+                                                        },
+                                                    }}
                                                 />
                                             </Grid>
                                         </Grid>
@@ -101,7 +133,10 @@ export default function AddTodo({ saveTodo }) {
                                 alignItems='center'
                             >
                                 <CardActions>
-                                    <Button onClick={() => handleOnClick()}>
+                                    <Button
+                                        className={classes.addButton}
+                                        onClick={() => handleOnClick()}
+                                    >
                                         Add Task
                                     </Button>
                                 </CardActions>

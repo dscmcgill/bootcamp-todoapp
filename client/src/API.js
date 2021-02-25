@@ -16,8 +16,9 @@ export const getTodos = async () => {
 // CREATE
 export const addTodo = async (formData) => {
     try {
+        console.log(formData);
         const todo = {
-            title: formData.title,
+            title: formData.name,
             description: formData.description,
             status: false,
         };

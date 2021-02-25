@@ -23,7 +23,7 @@ todoRouter.post("/todos", async (req: Request, res: Response) => {
       description: req.body.description,
       status: false,
     });
-
+    console.log(newTodo);
     res.json(newTodo);
   } catch (error) {
     res.status(500).json({

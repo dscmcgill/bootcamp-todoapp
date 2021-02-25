@@ -5,7 +5,17 @@ import './App.css';
 import TodoItem from './components/TodoItem';
 import AddTodo from './components/AddTodo';
 
+// MUI
+import Typography from '@material-ui/core/Typography';
+
+// Theme
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import themeFile from './utils/theme';
+
 import { getTodos, addTodo, updateToDo, deleteToDo } from './API';
+
+const theme = createMuiTheme(themeFile);
 
 function App() {
     const [todos, setTodos] = useState([]);
@@ -64,18 +74,30 @@ function App() {
 
     return (
         <>
-            <div>
-                hello from App js
-                <AddTodo saveTodo={handleSaveTodo} />
-                {todos.map((todo) => (
-                    <TodoItem
-                        key={todo._id}
-                        todo={todo}
-                        updateTodo={handleUpdateTodo}
-                        deleteTodo={handleDeleteTodo}
-                    />
-                ))}
-            </div>
+            <MuiThemeProvider theme={theme}>
+                <div>
+                    <Typography
+                        variant='h4'
+                        component='h1'
+                        style={{
+                            textAlign: 'center',
+                            margin: 50,
+                            color: '#ffffff',
+                        }}
+                    >
+                        My List of Todos
+                    </Typography>
+                    <AddTodo saveTodo={handleSaveTodo} />
+                    {todos.map((todo) => (
+                        <TodoItem
+                            key={todo._id}
+                            todo={todo}
+                            updateTodo={handleUpdateTodo}
+                            deleteTodo={handleDeleteTodo}
+                        />
+                    ))}
+                </div>
+            </MuiThemeProvider>
         </>
     );
 }
